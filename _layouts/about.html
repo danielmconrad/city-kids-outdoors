@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{% assign d = site.data.pages.about %}
+
+<section class="page-header">
+  <div class="container">
+    <h1>About Us</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Our Mission</h2>
+    {{ d.mission | markdownify }}
+    {% if d.vision %}
+    <h2>Our Vision</h2>
+    {{ d.vision | markdownify }}
+    {% endif %}
+  </div>
+</section>
+
+{% if d.founder_name %}
+<section class="section founder">
+  <div class="container">
+    <h2>Meet the Founder</h2>
+    <div class="founder-content">
+      {% if d.founder_photo %}
+        <img class="founder-photo" src="{{ d.founder_photo | relative_url }}" alt="{{ d.founder_name }}" />
+      {% endif %}
+      <div>
+        <h3>{{ d.founder_name }}</h3>
+        {{ d.founder_bio | markdownify }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

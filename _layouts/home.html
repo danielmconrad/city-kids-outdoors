@@ -1,0 +1,30 @@
+---
+layout: default
+---
+{% assign d = site.data.pages.home %}
+
+<section class="hero">
+  {% if d.hero_photo %}<img class="hero-photo" src="{{ d.hero_photo | relative_url }}" alt="" />{% endif %}
+  <div class="container">
+    <h1>{{ d.tagline }}</h1>
+  </div>
+</section>
+
+<section class="section programs-preview">
+  <div class="container">
+    <h2>Programs &amp; Events</h2>
+    {{ d.programs_summary | markdownify }}
+    {% if d.gcal_link %}
+      <a class="button" href="{{ d.gcal_link }}" target="_blank" rel="noopener">View Full Calendar</a>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section contact-preview">
+  <div class="container">
+    <h2>Get In Touch</h2>
+    {% if d.email %}<p><a href="mailto:{{ d.email }}">{{ d.email }}</a></p>{% endif %}
+    {% if d.phone %}<p>{{ d.phone }}</p>{% endif %}
+    <a class="button" href="{{ '/contact/' | relative_url }}">Contact Us</a>
+  </div>
+</section>

@@ -1,0 +1,94 @@
+backend:
+  name: github
+  repo: danielmconrad/city-kids-outdoors
+  branch: main
+  # OAuth proxy required for GitHub Pages — see TODO.md for setup instructions.
+  # base_url: https://YOUR_WORKER.workers.dev
+
+media_folder: assets/images/uploads
+public_folder: /assets/images/uploads
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+
+      - name: home
+        label: Home Page
+        file: _data/pages/home.yml
+        fields:
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Hero Photo, name: hero_photo, widget: image, required: false }
+          - { label: Programs & Events Summary, name: programs_summary, widget: markdown }
+          - { label: Google Calendar Link, name: gcal_link, widget: string, required: false }
+          - { label: Contact Email, name: email, widget: string }
+          - { label: Contact Phone, name: phone, widget: string, required: false }
+
+      - name: programs
+        label: Programs & Events Page
+        file: _data/pages/programs.yml
+        fields:
+          - { label: Google Calendar Link, name: gcal_link, widget: string, required: false }
+          - label: Playdates
+            name: playdates
+            widget: object
+            fields:
+              - { label: Description, name: description, widget: markdown }
+              - label: Photos
+                name: photos
+                widget: list
+                required: false
+                field: { label: Photo, name: photo, widget: image }
+          - label: Classes
+            name: classes
+            widget: object
+            fields:
+              - { label: Description, name: description, widget: markdown }
+              - label: Photos
+                name: photos
+                widget: list
+                required: false
+                field: { label: Photo, name: photo, widget: image }
+          - label: Community
+            name: community
+            widget: object
+            fields:
+              - { label: Description, name: description, widget: markdown }
+
+      - name: about
+        label: About Us Page
+        file: _data/pages/about.yml
+        fields:
+          - { label: Mission Statement, name: mission, widget: markdown }
+          - { label: Vision Statement, name: vision, widget: markdown, required: false }
+          - { label: Founder Name, name: founder_name, widget: string }
+          - { label: Founder Photo, name: founder_photo, widget: image, required: false }
+          - { label: Founder Bio, name: founder_bio, widget: markdown }
+
+      - name: contact
+        label: Contact Page
+        file: _data/pages/contact.yml
+        fields:
+          - { label: Email Address, name: email, widget: string }
+          - { label: Instagram URL, name: instagram_url, widget: string, required: false }
+          - { label: Facebook URL, name: facebook_url, widget: string, required: false }
+
+  - name: events
+    label: Events
+    folder: _events
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - label: Type
+        name: type
+        widget: select
+        options:
+          - { label: Playdate, value: playdate }
+          - { label: Class, value: class }
+          - { label: Community Event, value: community }
+      - { label: Description, name: body, widget: markdown }
+      - { label: Location, name: location, widget: string, required: false }
+      - { label: Registration Link, name: registration_link, widget: string, required: false }
+      - { label: Image, name: image, widget: image, required: false }

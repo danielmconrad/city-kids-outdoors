@@ -1,0 +1,67 @@
+---
+layout: default
+---
+{% assign d = site.data.pages.programs %}
+
+<section class="page-header">
+  <div class="container">
+    <h1>Programs &amp; Events</h1>
+    {% if d.gcal_link %}
+      <a class="button" href="{{ d.gcal_link }}" target="_blank" rel="noopener">View Calendar</a>
+    {% endif %}
+  </div>
+</section>
+
+{% assign upcoming = site.events | where_exp: "e", "e.date >= site.time" | sort: "date" %}
+{% if upcoming.size > 0 %}
+<section class="section">
+  <div class="container">
+    <h2>Upcoming Events</h2>
+    <ul class="event-list">
+      {% for event in upcoming limit: 5 %}
+      <li class="event-card">
+        <time>{{ event.date | date: "%B %-d, %Y" }}</time>
+        <h3><a href="{{ event.url | relative_url }}">{{ event.title }}</a></h3>
+        <span class="event-type">{{ event.type | capitalize }}</span>
+        {% if event.location %}<p>{{ event.location }}</p>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+<section class="section">
+  <div class="container">
+    <h2>Playdates</h2>
+    {{ d.playdates.description | markdownify }}
+    {% if d.playdates.photos.size > 0 %}
+    <div class="photo-grid">
+      {% for photo in d.playdates.photos %}
+        <img src="{{ photo | relative_url }}" alt="" />
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Classes</h2>
+    {{ d.classes.description | markdownify }}
+    {% if d.classes.photos.size > 0 %}
+    <div class="photo-grid">
+      {% for photo in d.classes.photos %}
+        <img src="{{ photo | relative_url }}" alt="" />
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Community</h2>
+    {{ d.community.description | markdownify }}
+  </div>
+</section>

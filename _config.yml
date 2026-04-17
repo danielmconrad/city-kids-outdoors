@@ -1,0 +1,24 @@
+title: City Kids Outdoors
+description: Connecting city kids with the outdoors through play and learning.
+url: "https://danielmconrad.github.io"
+baseurl: "/city-kids-outdoors"
+
+collections:
+  events:
+    output: true
+    permalink: /events/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: events
+    values:
+      layout: event
+
+exclude:
+  - TODO.md
+  - "*.gemspec"
+  - "*.gem"
+  - Gemfile
+  - Gemfile.lock
+  - vendor/

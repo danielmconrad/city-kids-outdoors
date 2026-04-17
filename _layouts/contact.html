@@ -1,0 +1,36 @@
+---
+layout: default
+---
+{% assign d = site.data.pages.contact %}
+
+<section class="page-header">
+  <div class="container">
+    <h1>Contact</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-grid">
+    <div class="contact-info">
+      {% if d.email %}
+        <h2>Email</h2>
+        <p><a href="mailto:{{ d.email }}">{{ d.email }}</a></p>
+      {% endif %}
+      {% if d.instagram_url or d.facebook_url %}
+        <h2>Follow Us</h2>
+        {% if d.instagram_url %}<p><a href="{{ d.instagram_url }}" target="_blank" rel="noopener">Instagram</a></p>{% endif %}
+        {% if d.facebook_url %}<p><a href="{{ d.facebook_url }}" target="_blank" rel="noopener">Facebook</a></p>{% endif %}
+      {% endif %}
+    </div>
+    <div class="contact-form">
+      <h2>Send a Message</h2>
+      <!-- TODO: Wire up a form service (e.g. Formspree). Replace ACTION_URL below. -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>Name <input type="text" name="name" required /></label>
+        <label>Email <input type="email" name="_replyto" required /></label>
+        <label>Message <textarea name="message" rows="5" required></textarea></label>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
