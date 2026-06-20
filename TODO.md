@@ -5,7 +5,7 @@
 - [x] Create Jekyll + GitHub Actions deploy pipeline (no Gemfile needed)
 - [x] Create site layouts and pages (Home, Programs & Events, About, Contact)
 - [x] Create Sveltia CMS admin panel (`/admin/`)
-- [ ] **Enable GitHub Pages in repo settings**
+- [x] **Enable GitHub Pages in repo settings**
       Go to Settings → Pages → Source: "GitHub Actions"
 - [ ] **Set up OAuth for Sveltia CMS** (required for content editing)
       Sveltia CMS needs an OAuth proxy to authenticate editors via GitHub.
