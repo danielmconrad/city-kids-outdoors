@@ -3,6 +3,10 @@ description: Connecting city kids with the outdoors through play and learning.
 url: "https://danielmconrad.github.io"
 baseurl: "/city-kids-outdoors"
 
+backend:
+  name: github
+  repo: danielmconrad/city-kids-outdoors
+
 collections:
   events:
     output: true
